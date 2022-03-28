@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+/* ===== 컬러칩 ===== */
+$black:#313136;
+$gray:#9d9d9d;
+
+/* ===== 바디 ===== */
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100vw;
+    height:100vh;
+    overflow: hidden;
+    background:url('./../img/phone.png') no-repeat center / 850px;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+/* ===== 이너 ===== */
+.inner{
+    padding:0 14px;
+}
+
+/* ===== 계산기 웹 ===== */
+#calculator_wrap{
+    width:306px;
+    height:665px;
+    margin-right: 15px;
+    background:#FAFAFA;
+    overflow: hidden;
+    border-radius: 35px;
+    /* 타이틀 */
+    .title_box{
+        margin: 30px 0;
+        .title{
+            text-align: center;
+            color:$black;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+    }
+    /* 스크린 */
+    .screen_box{
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        height:80px;
+        padding-bottom:15px;
+        .formula{
+            margin:8px 0;
+            text-align: right;
+            color:$gray;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        h1{
+            margin:0;
+            color:$black;
+            text-align: right;
+        }
+    }
+    /* 키패드 */
+    .keypad_wrap{
+        position: relative;
+        width:100%;
+        height:69.5%;
+        padding:80px 0;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        background:#F6F6F6;
+        .rectangle_img{
+            position: absolute;
+            top:15px;
+            left:50%;
+            transform: translateX(-50%);
+            width:30px;
+        }
+        .keypad_box{
+            display: flex;
+            flex-wrap: wrap;
+            width:100%;
+            gap:13px;
+            button{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width:21.4%;
+                height:56.67px;
+                background:#EFEFEF;
+                border-radius: 10px;
+                color:$black;
+                cursor: pointer;
+                outline: none;
+                border:none;
+                font-size:18px;
+                transition: 0.1s;
+                img{
+                    width:13px;
+                }
+            }
+            button:nth-child(1) img{
+                width:22px;
+            }
+            button:nth-child(2) img{
+                width:10px;
+            }
+            button:hover{
+                color:#fff;
+                background:#3648EC;
+                img{
+                    filter: brightness(0) invert(1);
+                }
+            }
+        }
+    }
+}
+
