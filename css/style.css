@@ -26,7 +26,7 @@ body {
   margin-right: 15px;
   background: #FAFAFA;
   overflow: hidden;
-  border-radius: 35px;
+  border-radius: 30px;
   /* 타이틀 */
   /* 스크린 */
   /* 키패드 */
@@ -51,7 +51,7 @@ body {
   margin: 8px 0;
   text-align: right;
   color: #9d9d9d;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.5px;
 }
 #calculator_wrap .screen_box h1 {
@@ -87,7 +87,6 @@ body {
   justify-content: center;
   width: 21.4%;
   height: 56.67px;
-  background: #EFEFEF;
   border-radius: 10px;
   color: #313136;
   cursor: pointer;
@@ -99,15 +98,35 @@ body {
 #calculator_wrap .keypad_wrap .keypad_box button img {
   width: 13px;
 }
-#calculator_wrap .keypad_wrap .keypad_box button:nth-child(1) img {
-  width: 22px;
+#calculator_wrap .keypad_wrap .keypad_box button:nth-child(1) {
+  background: #efefef url("../img/ac.svg") no-repeat center/20px;
 }
-#calculator_wrap .keypad_wrap .keypad_box button:nth-child(2) img {
-  width: 10px;
+#calculator_wrap .keypad_wrap .keypad_box button:nth-child(2) {
+  background: #fafafa url("../img/plus_minus.svg") no-repeat center/10px;
+}
+#calculator_wrap .keypad_wrap .keypad_box button:nth-child(3) {
+  background: #fafafa url("../img/percent.svg") no-repeat center/13px;
+}
+#calculator_wrap .keypad_wrap .keypad_box button:nth-child(4) {
+  background: #efefef url("../img/divide.svg") no-repeat center/13px;
+}
+#calculator_wrap .keypad_wrap .keypad_box button:nth-child(8) {
+  background: #efefef url("../img/multiply.svg") no-repeat center/13px;
+}
+#calculator_wrap .keypad_wrap .keypad_box button:nth-child(12) {
+  background: #efefef url("../img/minus.svg") no-repeat center/13px;
+}
+#calculator_wrap .keypad_wrap .keypad_box button:nth-child(16) {
+  background: #efefef url("../img/plus.svg") no-repeat center/13px;
+}
+#calculator_wrap .keypad_wrap .keypad_box button:nth-child(17) {
+  background: #efefef url("../img/return.svg") no-repeat center/13px;
+}
+#calculator_wrap .keypad_wrap .keypad_box button:nth-child(20) {
+  background: #efefef url("../img/equal.svg") no-repeat center/13px;
 }
 #calculator_wrap .keypad_wrap .keypad_box button:hover {
-  color: #fff;
-  background: #3648EC;
+  background-color: #fff;
 }
 #calculator_wrap .keypad_wrap .keypad_box button:hover img {
   filter: brightness(0) invert(1);

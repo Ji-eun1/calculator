@@ -1,65 +1,118 @@
-const btn = document.querySelectorAll('.btn');
+// 플러스마이너스 버튼, 퍼센트 버튼 disabled.
+
+const numberBtn = document.querySelectorAll('.numberBtn');
+const operatorBtn = document.querySelectorAll('.operatorBtn');
 const resetBtn = document.querySelector('.resetBtn');
 const multiply = document.querySelector('.multiply');
 const formula = document.querySelector('.formula');
 const equalBtn = document.querySelector('.equalBtn');
 const result = document.querySelector('.result');
-const returnBtn = document.querySelector('.returnBtn');
+const eraseBtn = document.querySelector('.eraseBtn');
 const plusMinusBtn = document.querySelector('.plusMinusBtn');
-const operator = document.querySelector('.operator').value;
 
-[].forEach.call(btn, function(btn){
-    btn.addEventListener("click", printFormula, false); 
+let formulaArr = ['0'];
+let operatorBtnClick = false;
+let initalBtnClick = false;
+
+numberBtn.forEach((btn)=>{
+    btn.addEventListener('click', (e) => {
+        let keypadValue = e.target.value;
+        if(!initalBtnClick){
+            formula.innerHTML = '';
+            formulaArr.pop();
+        } 
+        formula.innerHTML += keypadValue;
+        formulaArr.push(keypadValue);
+        operatorBtnClick = false;
+        initalBtnClick = true;
+       
+        console.log(formulaArr);
+    });
 });
 
-let arr = [];
-function printFormula(e){
-    let keypadValue = e.target.value;
-    formula.innerHTML += keypadValue;
-    let testValue = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g
-    arr.push(keypadValue)
+operatorBtn.forEach((btn)=>{
+    btn.addEventListener('click', (e) => {
+        let keypadValue = e.target.value;
+        if (!operatorBtnClick){
+            operatorBtnClick = true;
+        } else{
+            let str = formula.innerHTML;
+            str = str.slice(0, -1);
+            formula.innerHTML = str;
+            formulaArr.pop();
+        }
+        formula.innerHTML += keypadValue;
+        formulaArr.push(keypadValue);
+        initalBtnClick = true;
 
-    formula.innerHTML = formula.innerHTML.replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]{2}/g, arr[arr.length-1])
-    if(testValue.test(arr[arr.length-1]) && testValue.test(arr[arr.length-2])){
-        arr.splice(arr.length-2, 1);
-    }
-    console.log(arr)
-}
+        console.log(formulaArr);
+    });
+});
 
-resetBtn.addEventListener('click', function(){
-    arr = [];
-    formula.innerHTML = '';
-    result.innerHTML = '';
-})
+resetBtn.addEventListener('click', () => {
+    formulaArr = ['0'];
+    formula.innerHTML = '0';
+    result.innerHTML = '0';
+    operatorBtnClick = false;
+    initalBtnClick = false;
+    console.log(formulaArr);
+});
 
-equalBtn.addEventListener('click', function(){
-    const sum = arr.reduce((a,b) => (a+b));
-    const answer = Math.ceil(eval(sum) * 100000000000)/100000000000;
-
-    formula.innerHTML = answer;
-    result.innerHTML = answer;
-    arr = [answer];
-})
-
-returnBtn.addEventListener('click', function(){
+eraseBtn.addEventListener('click', () => {
     let str = formula.innerHTML;
     str = str.slice(0, -1);
     formula.innerHTML = str;
-    arr = [...str];
+    formulaArr = [...str];
 
     if(formula.innerText === ''){
-        result.innerHTML = '';
-        arr = [];
+        result.innerHTML = '0';
+        formula.innerText = '0';
+        formulaArr = ['0'];
+        operatorBtnClick = false;
+        initalBtnClick = false;
     }
-})
+    if(formula.innerText === '0'){
+        initalBtnClick = false;
+    }
+
+    console.log(formulaArr);
+});
+
+equalBtn.addEventListener('click', () => {
+    const sum = formulaArr.reduce((a,b) => a+b);
+    const answer = Math.ceil(eval(sum) * 10000000000)/10000000000;
+
+    formula.innerHTML = answer;
+    result.innerHTML = answer;
+    formulaArr = [answer];
+    if(answer === 0){
+        initalBtnClick = false;
+    }
+
+    console.log(formulaArr);
+});
 
 /*
-plusMinusBtn.addEventListener('click', function(){
-    let str = formula.innerHTML;
-    formula.innerHTML = str * (-1);
-    result.innerHTML = str * (-1);
-    arr.unshift('*')
-    arr.unshift('-1')
-    console.log(arr)
-})
+plusMinusBtn.addEventListener('click', () => {
+    const sum = formulaArr.reduce((a,b) => a+b);
+    const answer = eval(sum);
+
+    if(operatorBtnClick){
+        formula.innerHTML = answer*(-1);
+        result.innerHTML = answer*(-1);
+        formulaArr = [answer*(-1)];
+    } else{
+        operatorBtnClick = false;
+        formulaArr.push('-');
+        formula.innerHTML = formula.innerHTML + '-';
+    }
+
+    if(formula.innerText === '0'){
+        initalBtnClick = false;
+    }
+    
+    console.log(answer);
+});
 */
+
+
